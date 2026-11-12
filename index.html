@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWS Study Plan</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#16181d;--muted:#5d6470;--line:#e2e5ea;--accent:#e8770c;--accent-soft:#fff3e6;--good:#1f8a4c;--good-soft:#e7f6ed;--warn:#b54708;--warn-soft:#fef0e4;}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a20;--ink:#e9ebef;--muted:#9aa2ae;--line:#272b33;--accent:#ff9a3c;--accent-soft:#2a1d10;--good:#4cc282;--good-soft:#112419;--warn:#ffb070;--warn-soft:#2a1a0e;}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:30px;margin:0 0 4px}
+h2{font-size:21px;margin:36px 0 12px}
+h3{font-size:17px;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.stat b{display:block;font-size:22px}
+.stat span{color:var(--muted);font-size:14px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--accent);width:0}
+.week{margin-top:22px}
+.week-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.week-head .dates{color:var(--muted);font-size:14px}
+.goal{color:var(--muted);font-size:14px;margin:2px 0 8px}
+.day{display:grid;grid-template-columns:28px 120px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+.day:first-of-type{border-top:0}
+.day .mark{font-size:17px;font-weight:700;color:var(--good);margin-top:1px;text-align:center}
+.day.today .mark{color:var(--accent)}
+.day .when{font-size:14px;color:var(--muted)}
+.day .when b{display:block;color:var(--ink);font-size:15px}
+.day .what b{display:block}
+.day .what div{font-size:14.5px;color:var(--muted)}
+.lab{display:inline-block;margin-top:4px;font-size:13.5px;background:var(--accent-soft);color:var(--ink);padding:2px 8px;border-radius:6px}
+.cost{display:inline-block;margin-top:4px;margin-left:4px;font-size:13.5px;background:var(--warn-soft);color:var(--warn);padding:2px 8px;border-radius:6px}
+.day.done .what b{text-decoration:line-through;color:var(--muted)}
+.day.today{background:var(--accent-soft);border-radius:8px;padding-left:8px;padding-right:8px}
+.day.off .what b{color:var(--muted)}
+.exam{border:2px solid var(--accent)}
+ol,ul{margin:6px 0;padding-left:22px}
+li{margin:3px 0}
+.cols{columns:2 260px;column-gap:28px}
+.cols li{break-inside:avoid}
+.tag{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
+code{background:var(--line);padding:1px 5px;border-radius:4px;font-size:14px}
+a{color:var(--accent)}
+@media (max-width:560px){.day{grid-template-columns:24px 1fr}.day .what{grid-column:2}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AWS Solutions Architect Associate</h1>
+  <p class="sub">You and Claude, Nov 9 2026 to exam day Jan 15 2027. One to two hours a day, Sundays off.</p>
+
+  <div class="grid">
+    <div class="card stat"><b id="daysDone">0 / 0</b><span>study days done</span><div class="bar"><i id="pbar"></i></div></div>
+    <div class="card stat"><b id="toExam">…</b><span>until exam day (Fri Jan 15)</span></div>
+    <div class="card stat"><b>80%+ ×3</b><span>practice exam scores in a row before you sit the real one</span></div>
+  </div>
+
+  <div class="card" id="syncCard">
+    <p style="margin:0" id="sync">Loading your progress…</p>
+    <p style="margin:8px 0 0;font-size:14.5px;color:var(--muted)">Same progress on every computer. To mark a day done by hand, <a href="https://github.com/Zhaynie1/aws-study/edit/main/progress.md" target="_blank" rel="noopener">edit progress.md on GitHub</a> and add a line like <code>- Day 3 (2026-11-14)</code> under "Completed days". Claude does this for you at the end of every session.</p>
+  </div>
+
+  <h2>How every session works</h2>
+  <div class="card">
+    <p style="margin-top:0">Open Claude and say <code>AWS Day 1</code> (or whatever day you're on). Claude tracks where you are, what you got wrong, and what to review.</p>
+    <ol>
+      <li><b>Learn (25 to 40 min).</b> Claude teaches the day's topic in plain English, compared to stuff you already know (Cloudflare, your sites). Then you watch the matching part of the free course.</li>
+      <li><b>Build it yourself (30 to 45 min).</b> You type every command and click every button. Claude explains, you don't paste.</li>
+      <li><b>Break it (10 min).</b> Claude has you break something on purpose and figure out why from the error.</li>
+      <li><b>Prove it (10 to 15 min).</b> 10 exam-style questions plus 3 interview questions you answer out loud, in your own words. Anything you miss goes on your review list.</li>
+    </ol>
+    <p style="margin-bottom:0"><b>Saturdays:</b> review the week, redo one lab from a blank screen with no help, and do a mock interview.</p>
+  </div>
+
+  <h2>Ground rules</h2>
+  <div class="card">
+    <ul>
+      <li><b>Billing alarm on Day 5, before anything else gets built.</b> Set it at $5.</li>
+      <li>Anything marked <span class="cost">costs $ hourly</span> gets <b>deleted the same day</b> you build it.</li>
+      <li>You type it, Claude explains. No pasting code in. Interviews will ask you to explain your work.</li>
+      <li>If you can't explain something out loud, you don't know it yet. That's fine, it just goes on the review list.</li>
+      <li>Missed a day? Don't skip ahead, just slide. Exam date can move (AWS lets you reschedule free up to 24 hours before).</li>
+    </ul>
+  </div>
+
+  <h2>Free study stuff we'll use</h2>
+  <div class="card">
+    <ul>
+      <li><b>Claude</b>: main teacher, quizzes, mock interviews, explains every wrong answer.</li>
+      <li><b>freeCodeCamp: AWS Solutions Architect Associate course (Andrew Brown)</b>: full free video course on YouTube. Your "watch" part each day.</li>
+      <li><b>AWS Skill Builder</b> (skillbuilder.aws, free account): the official free <i>Exam Prep Standard Course</i> and the <i>Official Practice Question Set</i>.</li>
+      <li><b>AWS official exam guide + sample questions</b>: the exact list of what's on the test. We check every topic against it.</li>
+      <li><b>AWS docs and FAQ pages</b>: for anything the course skims over. The FAQ pages are written almost like exam questions.</li>
+      <li><b>AWS Well-Architected Framework</b>: the "how to design it right" rules the whole exam is built on.</li>
+      <li><b>AWS free plan</b>: new accounts get free credits to practice with. Plenty for this plan if you delete stuff after.</li>
+      <li><b>Only thing worth paying for:</b> Tutorials Dojo practice exams, around $15. The closest thing to the real test. Buy it around Christmas.</li>
+    </ul>
+  </div>
+
+  <h2>The schedule</h2>
+  <div id="weeks"></div>
+
+  <h2>Interview basics they'll think are "simple"</h2>
+  <div class="card">
+    <p style="margin-top:0">The exam doesn't test all of these, but junior interviews do. Each one is built into the days above, and Claude will drill you on them until you can explain every one out loud.</p>
+    <ul class="cols">
+      <li>What happens when you type a website into your browser, step by step</li>
+      <li>DNS record types: A, AAAA, CNAME, MX, TXT, NS</li>
+      <li>HTTP status codes: 200, 301, 302, 400, 401, 403, 404, 500, 502, 503, 504</li>
+      <li>Common ports: 22 SSH, 80 HTTP, 443 HTTPS, 3306 MySQL, 5432 Postgres, 3389 RDP</li>
+      <li>TCP vs UDP</li>
+      <li>Public vs private IP addresses, what NAT does</li>
+      <li>CIDR: what a /16, /24, /32 mean and how many addresses each has</li>
+      <li>Linux: ls, cd, cat, grep, chmod, chown, ps, top, df, du, systemctl, journalctl, curl, ssh</li>
+      <li>"The website is down. How do you figure out why?"</li>
+      <li>Security group vs network ACL</li>
+      <li>Scaling up vs scaling out</li>
+      <li>High availability vs fault tolerance vs disaster recovery</li>
+      <li>What a load balancer does and why you'd use one</li>
+      <li>IAM user vs role, and why you never put access keys in code</li>
+      <li>Encryption at rest vs in transit</li>
+      <li>Backups vs replicas</li>
+      <li>SQL vs NoSQL, and when you'd pick each</li>
+      <li>RPO vs RTO</li>
+      <li>What a container is vs a virtual machine</li>
+      <li>Serverless: what it is and when it's a bad idea</li>
+      <li>How you'd cut a company's AWS bill</li>
+      <li>Git basics: commit, branch, pull request, merge</li>
+      <li>Tell me about a time something broke and you fixed it (your real client stories)</li>
+      <li>Walk me through a project you built (your AWS project + Film Timeline)</li>
+    </ul>
+  </div>
+
+  <h2>After the exam (Jan 16 on)</h2>
+  <div class="card">
+    <ul style="margin:0">
+      <li><b>Jan 16 to Feb 28:</b> Terraform, GitHub Actions, Docker. Rebuild one of your real projects on AWS as code.</li>
+      <li><b>March:</b> portfolio write-up on zackhaynie.com, resume, LinkedIn, mock interviews. Start applying.</li>
+      <li><b>April:</b> applying full time and interviewing.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const W = [
+ {t:"Week 1: How the internet and servers work", g:"The stuff everything else sits on. Most interview 'simple' questions live here.", d:[
+  ["2026-11-09","Day 1","What the cloud actually is + how the internet works","Client and server, IP addresses, DNS, HTTP vs HTTPS, what happens when you type a URL.","Look up your own sites with nslookup and curl and read what comes back"],
+  ["2026-11-10","Day 2","Networking basics","Ports, TCP vs UDP, public vs private IPs, NAT, CIDR notation and splitting networks into subnets.","Subnet math drills with Claude until it's easy"],
+  ["2026-11-11","Day 3","Linux command line, part 1","Moving around, files, permissions (chmod, chown), users, sudo.","Install Ubuntu on your PC (WSL) and practice"],
+  ["2026-11-12","Day 4","Linux command line, part 2","Processes, services (systemctl), logs (journalctl), installing software, SSH keys.","Run a real web server (nginx) on your own machine"],
+  ["2026-11-13","Day 5","Set up AWS the safe way","Root account lock down with MFA, billing alarm, admin user, AWS CLI. Regions, availability zones, edge locations. Shared responsibility model.","Account setup + $5 billing alarm"],
+  ["2026-11-14","Day 6","Week 1 review + first mock interview","How AWS charges you. Review quiz. Explain 'what happens when you type a URL' out loud.","Redo the nginx server from a blank screen"],
+ ]},
+ {t:"Week 2: Who can do what (IAM) + servers (EC2)", g:"Permissions and virtual computers. Two of the biggest exam topics.", d:[
+  ["2026-11-16","Day 7","IAM part 1","Users, groups, roles, policies, least privilege. Reading a policy written in JSON.","Make a user who can only do one thing"],
+  ["2026-11-17","Day 8","IAM part 2","Roles for services, cross account access, temporary credentials (STS), single sign on, how AWS decides allow vs deny.","Write a policy that can read one S3 bucket only"],
+  ["2026-11-18","Day 9","EC2 part 1: virtual servers","Instance types, AMIs, key pairs, security groups, startup scripts (user data).","Launch a server, SSH in, put a web page on it"],
+  ["2026-11-19","Day 10","EC2 part 2: disks and paying for servers","EBS disks, snapshots, making your own AMI. On Demand vs Reserved vs Savings Plans vs Spot.","Snapshot your server and launch a copy"],
+  ["2026-11-20","Day 11","EC2 part 3","Elastic IPs, placement groups, instance metadata, giving a server a role so it never needs keys.","Server reads S3 using a role, no keys"],
+  ["2026-11-21","Day 12","Week 2 review","Review quiz + mock interview.","Break it: wrong security group rule, find it from the symptoms"],
+ ]},
+ {t:"Week 3: Private networks in AWS (VPC)", g:"The topic most people struggle with. We go slow here.", d:[
+  ["2026-11-23","Day 13","VPC basics","Your own private network: subnets (public and private), route tables, internet gateway.","Build a VPC by hand"],
+  ["2026-11-24","Day 14","Getting private stuff online safely","NAT gateway, bastion hosts, security groups vs network ACLs (stateful vs stateless).","Private server reaches the internet through NAT", true],
+  ["2026-11-25","Day 15","Connecting networks together","VPC endpoints, PrivateLink, VPC peering, Transit Gateway, flow logs.","Add an S3 endpoint and watch traffic stay private"],
+  ["2026-11-26","Off","Thanksgiving","Eat. No studying.",""],
+  ["2026-11-27","Day 16","Connecting offices to AWS","Site to Site VPN, Direct Connect, Client VPN, DNS inside a VPC.","Diagram a company office connected to AWS"],
+  ["2026-11-28","Day 17","Week 3 review","Review quiz + mock interview.","Break it: 'I can't reach my server' (route table, SG, NACL)"],
+ ]},
+ {t:"Week 4: Storage + Project 1", g:"Where files live. You'll put a real site online fully on AWS.", d:[
+  ["2026-11-30","Day 18","S3 part 1","Buckets, objects, storage classes, versioning, lifecycle rules.","Bucket with versioning + a lifecycle rule"],
+  ["2026-12-01","Day 19","S3 part 2: security","Bucket policies, blocking public access, encryption types, presigned links, CORS, replication, Object Lock.","Share a private file with a link that expires"],
+  ["2026-12-02","Day 20","S3 part 3 + Project 1 start","Big uploads, faster transfers, event notifications, querying files with Athena.","Project 1: static website in S3"],
+  ["2026-12-03","Day 21","Project 1 finish: CloudFront + Route 53 + HTTPS","Putting a fast global network and a real domain with HTTPS in front of your site.","Project 1 live on your own domain"],
+  ["2026-12-04","Day 22","Other storage","EBS types, EFS, FSx, Storage Gateway, Snow devices, DataSync, AWS Backup.","Share one EFS drive between two servers"],
+  ["2026-12-05","Day 23","Week 4 review","Review quiz + mock interview. Write notes on how Project 1 works.","Explain Project 1 out loud start to finish"],
+ ]},
+ {t:"Week 5: Staying up when things break", g:"Load balancers, auto scaling, DNS routing. This is the heart of the job.", d:[
+  ["2026-12-07","Day 24","Scaling and staying up","Scaling up vs out, high availability vs fault tolerance, why apps should be 'stateless'. Load balancer types.","Draw a setup that survives a data center going down"],
+  ["2026-12-08","Day 25","Application Load Balancer","Listeners, target groups, health checks, routing by path, sticky sessions, HTTPS at the balancer.","Load balancer across 2 servers in 2 zones", true],
+  ["2026-12-09","Day 26","Auto Scaling","Launch templates, scaling policies, health replacement.","Kill a server on purpose and watch AWS replace it", true],
+  ["2026-12-10","Day 27","Route 53 deep dive","Record types, alias records, routing policies (weighted, latency, failover, geo), health checks.","Failover routing between two sites"],
+  ["2026-12-11","Day 28","CloudFront deep dive + Global Accelerator","Caching, TTLs, origins, blocking countries, signed URLs.","Change cache settings on Project 1 and test"],
+  ["2026-12-12","Day 29","Week 5 review","Review quiz + mock interview.","Break it: site behind a load balancer throws a 502"],
+ ]},
+ {t:"Week 6: Databases", g:"Picking the right database for the job is a huge chunk of the exam.", d:[
+  ["2026-12-14","Day 30","Database basics + RDS","SQL vs NoSQL, RDS engines, Multi AZ vs read replicas, backups and snapshots. (You already use D1, which is SQL.)","Read the RDS setup screen with Claude"],
+  ["2026-12-15","Day 31","RDS hands on + Aurora","Aurora, Aurora Serverless, RDS Proxy, encryption.","Server connects to a real RDS database", true],
+  ["2026-12-16","Day 32","DynamoDB","Keys, capacity modes, indexes, DAX, streams, global tables, TTL.","Build and query a table from the CLI"],
+  ["2026-12-17","Day 33","Caching + the other databases","ElastiCache (Redis), caching strategies, Redshift, Neptune, DocumentDB, Keyspaces, Timestream.","'Which database?' drill: 20 scenarios"],
+  ["2026-12-18","Day 34","Data and analytics","Athena, Glue, Kinesis, Firehose, EMR, QuickSight, OpenSearch.","Query a file in S3 with Athena"],
+  ["2026-12-19","Day 35","Week 6 review","Review quiz + mock interview.","Redo the RDS connection from a blank screen", true],
+ ]},
+ {t:"Week 7: Serverless, messaging, containers", g:"The AWS version of what you already do with Workers. Lighter week for Christmas.", d:[
+  ["2026-12-21","Day 36","Lambda","Triggers, limits, concurrency, layers, cold starts. Compared to Cloudflare Workers.","Your first Lambda function"],
+  ["2026-12-22","Day 37","Serverless app","API Gateway + Lambda + DynamoDB. Basically Workers + D1 on AWS.","Build a tiny API end to end"],
+  ["2026-12-23","Day 38","Decoupling with messages","SQS (standard vs FIFO, dead letter queues), SNS, fan out, EventBridge, Step Functions.","Lambda that processes a queue"],
+  ["2026-12-24","Day 39","Containers (light day)","Docker basics, ECR, ECS, Fargate, EKS, App Runner.","Read and explain a Dockerfile"],
+  ["2026-12-25","Off","Christmas","No studying.",""],
+  ["2026-12-26","Day 40","Week 7 review","Review quiz + mock interview. Buy Tutorials Dojo practice exams.","Redo the serverless API from a blank screen"],
+ ]},
+ {t:"Week 8: Security, monitoring, cost, disaster recovery", g:"Last new material. Book your exam this week.", d:[
+  ["2026-12-28","Day 41","Encryption","KMS, envelope encryption, CloudHSM, Secrets Manager vs Parameter Store, ACM. <b>Book the exam for Jan 15.</b>","Encrypt S3 with your own KMS key"],
+  ["2026-12-29","Day 42","Protecting accounts","WAF, Shield, GuardDuty, Inspector, Macie, Security Hub, Cognito, Organizations, SCPs, Control Tower.","Put WAF rules in front of Project 1"],
+  ["2026-12-30","Day 43","Monitoring","CloudWatch metrics, alarms, logs. CloudTrail, Config, X-Ray.","Alarm that emails you when your site goes down"],
+  ["2026-12-31","Day 44","Saving money","Pricing models review, Cost Explorer, Budgets, Compute Optimizer, Trusted Advisor, cheap architecture choices.","Find what's cost you money so far and why"],
+  ["2027-01-01","Off","New Year's Day","No studying.",""],
+  ["2027-01-02","Day 45","Disaster recovery + migration + Well-Architected","RPO vs RTO, the 4 DR strategies, DMS, Application Migration Service, the 6 Well-Architected pillars.","First full timed practice exam (baseline)"],
+ ]},
+ {t:"Week 9: Practice exams", g:"Now it's all about finding gaps and closing them.", d:[
+  ["2027-01-04","Day 46","Practice exam 2, first half","Timed. No notes.",""],
+  ["2027-01-05","Day 47","Practice exam 2, second half + score","Timed. No notes.",""],
+  ["2027-01-06","Day 48","Review every wrong answer","Claude explains each one. Weak topics go to the hit list.","Redo a lab from your weakest topic"],
+  ["2027-01-07","Day 49","Weak area deep dive","Whatever the hit list says.",""],
+  ["2027-01-08","Day 50","Practice exam 3 by topic","Topic sets on your weakest areas.",""],
+  ["2027-01-09","Day 51","Full timed practice exam 4","130 minutes, real conditions. Target 80%+.",""],
+ ]},
+ {t:"Week 10: Final stretch", g:"Not ready? Move the date a week. No shame in that, it's free.", d:[
+  ["2027-01-11","Day 52","Review exam 4 + weak spots","",""],
+  ["2027-01-12","Day 53","Full timed practice exam 5","Target 80%+.",""],
+  ["2027-01-13","Day 54","Review + Official AWS Practice Question Set","",""],
+  ["2027-01-14","Day 55","Light review only","One page cheat sheet, rapid fire quiz, go to bed early.",""],
+  ["2027-01-15","EXAM","AWS Solutions Architect Associate exam","65 questions, 130 minutes. You've got this.",""],
+ ]},
+];
+// Progress is NOT stored in this browser. The one source of truth is progress.md in the
+// GitHub repo, so the work PC and the home PC always show the same thing. A day counts as
+// done when its label ("Day 7") appears under "## Completed days" in progress.md.
+const REPO="https://github.com/Zhaynie1/aws-study";
+let done={};
+const fmt=s=>{const d=new Date(s+"T12:00:00");return d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"})};
+function render(){
+  const root=document.getElementById("weeks");root.innerHTML="";
+  let nextMarked=false;
+  W.forEach(w=>{
+    const card=document.createElement("div");card.className="card week";
+    const first=w.d[0][0],last=w.d[w.d.length-1][0];
+    card.innerHTML=`<div class="week-head"><h3>${w.t}</h3><span class="dates">planned ${fmt(first)} to ${fmt(last)}</span></div><p class="goal">${w.g}</p>`;
+    w.d.forEach(([date,label,title,desc,lab,cost])=>{
+      const row=document.createElement("div");
+      const off=label==="Off", exam=label==="EXAM", isDone=!!done[label];
+      const isNext=!off&&!isDone&&!nextMarked; if(isNext) nextMarked=true;
+      row.className="day"+(off?" off":"")+(isNext?" today":"")+(isDone?" done":"");
+      row.innerHTML=`<span class="mark">${off?"":isDone?"✓":isNext?"▶":""}</span>
+        <div class="when"><b>${label}</b>${fmt(date)}</div>
+        <div class="what"><b>${title}</b>${desc?`<div>${desc}</div>`:""}${lab?`<span class="lab">Hands on: ${lab}</span>`:""}${cost?`<span class="cost">costs $ hourly, delete today</span>`:""}</div>`;
+      if(exam) card.classList.add("exam");
+      card.appendChild(row);
+    });
+    root.appendChild(card);
+  });
+  const all=W.flatMap(w=>w.d).filter(d=>d[1]!=="Off");
+  const n=all.filter(d=>done[d[1]]).length;
+  document.getElementById("daysDone").textContent=n+" / "+all.length;
+  document.getElementById("pbar").style.width=(100*n/all.length)+"%";
+  const days=Math.ceil((new Date("2027-01-15T09:00:00")-new Date())/864e5);
+  document.getElementById("toExam").textContent=days>0?days+" days":"Exam day!";
+  const t=document.querySelector(".day.today"); if(t) t.scrollIntoView({block:"center"});
+}
+function setSync(html){document.getElementById("sync").innerHTML=html}
+render();
+fetch("progress.md?"+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.text()}).then(md=>{
+  const sec=(md.split(/^## Completed days\s*$/m)[1]||"").split(/^## /m)[0];
+  (sec.match(/\b(Day \d+|EXAM)\b/g)||[]).forEach(l=>done[l]=true);
+  const next=(md.match(/^Next session:\s*(.+)$/m)||[])[1];
+  render();
+  setSync(`Progress loaded from GitHub.${next?` <b>Next up: ${next.replace(/</g,"&lt;")}</b>`:""}`);
+}).catch(()=>setSync(`Couldn't load progress. Open the online page at <a href="https://zhaynie1.github.io/aws-study/">zhaynie1.github.io/aws-study</a> to see it.`));
+</script>
+</body>
+</html>
