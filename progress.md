@@ -1,7 +1,7 @@
 # AWS SAA progress
 
 Exam target: Fri 2027-01-15 (not booked yet; book on Day 41, Dec 28)
-Next session: Day 2 continued. Done: TCP/UDP, public vs private, NAT, CIDR basics (slash / 8 = numbers locked; /8 /16 /24 /32; he gets it now, answered 3 in a row). Next: splitting a /16 into /24 subnets (tiny steps), short break-it, then 10-question quiz + 3 interview Qs.
+Next session: Finish Day 2 at home: (1) subnets in tiny steps (split a /16 into /24s), (2) break-it, (3) 10-question quiz + 3 interview Qs. ~1 hr total. Quick refresher first (CIDR slash / 8 rule, NAT).
 
 ## Completed days
 - Day 1 (2026-11-13): 9/10 quiz, 3/3 interview Qs answered (solid, needed tightening). Missed: request order. Also missed A vs CNAME in warm-up.
