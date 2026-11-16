@@ -1,7 +1,7 @@
 # AWS SAA progress
 
 Exam target: Fri 2027-01-15 (not booked yet; book on Day 41, Dec 28)
-Next session: Day 2 in progress. Done: TCP vs UDP, public vs private IPs, NAT (explained it well with his own ipconfig: private 192.168.x, gateway = router, public IP different). Next: CIDR, restart it slowly in tiny steps (first message overwhelmed him). Then subnet drills + quiz.
+Next session: Day 2 continued. Done: TCP/UDP, public vs private, NAT, CIDR basics (slash / 8 = numbers locked; /8 /16 /24 /32; he gets it now, answered 3 in a row). Next: splitting a /16 into /24 subnets (tiny steps), short break-it, then 10-question quiz + 3 interview Qs.
 
 ## Completed days
 - Day 1 (2026-11-13): 9/10 quiz, 3/3 interview Qs answered (solid, needed tightening). Missed: request order. Also missed A vs CNAME in warm-up.
@@ -9,6 +9,7 @@ Next session: Day 2 in progress. Done: TCP vs UDP, public vs private IPs, NAT (e
 ## How he learns best
 - HIS GOAL: by ~Day 60, explain every topic out loud easily enough to pass a junior interview. So EVERY session: start with a refresher recap + re-quiz 2-3 items, mixing recent ones with older ones (spaced repetition), not just yesterday's. Keep revisiting until they're effortless.
 - Big tables + code blocks + several new terms in one message = shuts down (happened on CIDR). For math topics: ONE small idea per message, short, check, then next. Keep messages short in general.
+- CIDR clicked once taught as: dots split 4 numbers -> same first 3 = same house -> /24 shorthand -> 'slash / 8 = numbers locked'. Each number = 8 bits (on/off switches) explained only after he asked.
 - He takes handwritten notes; resend a section in full when he asks so he can copy it.
 - Plain-English story first, labels/jargon after. Too many terms at once = frustration.
 - Show a worked example before asking open questions; fill-in-the-blank works better than "explain everything".
