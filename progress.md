@@ -1,13 +1,14 @@
 # AWS SAA progress
 
 Exam target: Fri 2027-01-15 (not booked yet; book on Day 41, Dec 28)
-Next session: Day 2 in progress. Done: TCP vs UDP (got it). Now on Part 2 public vs private IPs, then NAT, then CIDR/subnet drills. Then quiz.
+Next session: Day 2 in progress. Done: TCP vs UDP, public vs private IPs, NAT (explained it well with his own ipconfig: private 192.168.x, gateway = router, public IP different). Next: CIDR, restart it slowly in tiny steps (first message overwhelmed him). Then subnet drills + quiz.
 
 ## Completed days
 - Day 1 (2026-11-13): 9/10 quiz, 3/3 interview Qs answered (solid, needed tightening). Missed: request order. Also missed A vs CNAME in warm-up.
 
 ## How he learns best
 - HIS GOAL: by ~Day 60, explain every topic out loud easily enough to pass a junior interview. So EVERY session: start with a refresher recap + re-quiz 2-3 items, mixing recent ones with older ones (spaced repetition), not just yesterday's. Keep revisiting until they're effortless.
+- Big tables + code blocks + several new terms in one message = shuts down (happened on CIDR). For math topics: ONE small idea per message, short, check, then next. Keep messages short in general.
 - He takes handwritten notes; resend a section in full when he asks so he can copy it.
 - Plain-English story first, labels/jargon after. Too many terms at once = frustration.
 - Show a worked example before asking open questions; fill-in-the-blank works better than "explain everything".
@@ -23,6 +24,7 @@ Next session: Day 2 in progress. Done: TCP vs UDP (got it). Now on Part 2 public
 (none yet)
 
 ## Review list (things to re-quiz)
+- UDP is less RELIABLE, not less SAFE. NAT = router translates private->public ('hide behind'), not 'spoof'. Website sees home public IP, never 192.168.x (missed once).
 - MISSED: A vs CNAME when the host's IP can change -> CNAME (points to a name; the host keeps its IP current). A record holds only an IP, never a name.
 - MISSED: request order = find it (DNS) -> connect (port 443 + encryption) -> ask (GET /) -> get (200). Pizza analogy.
 - Ports: 80 HTTP, 443 HTTPS, 22 SSH. Status families: no code = never reached server (check DNS), 4xx = your request (401 no ID, 403 not allowed, 404 not found), 5xx = server broke. Say 500, not 505.
