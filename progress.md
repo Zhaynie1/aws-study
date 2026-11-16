@@ -1,12 +1,14 @@
 # AWS SAA progress
 
 Exam target: Fri 2027-01-15 (not booked yet; book on Day 41, Dec 28)
-Next session: Day 2 (see index.html). Warm-up: re-quiz A vs CNAME and the find->connect->ask->get order.
+Next session: Day 2 in progress. Done: TCP vs UDP (got it). Now on Part 2 public vs private IPs, then NAT, then CIDR/subnet drills. Then quiz.
 
 ## Completed days
 - Day 1 (2026-11-13): 9/10 quiz, 3/3 interview Qs answered (solid, needed tightening). Missed: request order. Also missed A vs CNAME in warm-up.
 
 ## How he learns best
+- HIS GOAL: by ~Day 60, explain every topic out loud easily enough to pass a junior interview. So EVERY session: start with a refresher recap + re-quiz 2-3 items, mixing recent ones with older ones (spaced repetition), not just yesterday's. Keep revisiting until they're effortless.
+- He takes handwritten notes; resend a section in full when he asks so he can copy it.
 - Plain-English story first, labels/jargon after. Too many terms at once = frustration.
 - Show a worked example before asking open questions; fill-in-the-blank works better than "explain everything".
 - Explain why something matters (troubleshooting a broken client site) before drilling it.
