@@ -1,9 +1,10 @@
 # AWS SAA progress
 
 Exam target: Fri 2027-01-15 (not booked yet; book on Day 41, Dec 28)
-Next session: Finish Day 2 at home: (1) subnets in tiny steps (split a /16 into /24s), (2) break-it, (3) 10-question quiz + 3 interview Qs. ~1 hr total. Quick refresher first (CIDR slash / 8 rule, NAT).
+Next session: Day 3, Linux command line part 1 (needs Ubuntu via WSL on his Windows PC). Warm-up first: CIDR size ('big number, small house'), DNS-first rule, public vs private subnet.
 
 ## Completed days
+- Day 2 (2026-11-17): 9/10 quiz, 3/3 interview Qs (good, polished). Missed: which CIDR is biggest (picked /32).
 - Day 1 (2026-11-13): 9/10 quiz, 3/3 interview Qs answered (solid, needed tightening). Missed: request order. Also missed A vs CNAME in warm-up.
 
 ## How he learns best
@@ -17,6 +18,9 @@ Next session: Finish Day 2 at home: (1) subnets in tiny steps (split a /16 into 
 - Explain why something matters (troubleshooting a broken client site) before drilling it.
 - Windows laptop: curl/PowerShell commands failed; browser DevTools (F12 > Network, Disable cache, Preserve log, Incognito) worked well.
 
+## Day 2 notes
+- Learn: TCP/UDP, public vs private IPs, NAT, CIDR, subnets. Build: ran ipconfig (private 192.168.x, gateway = router, public IP different via 'what is my ip'). Break: spot-the-mistake (web server private / DB public).
+
 ## Day 1 notes
 - Learn: AWS Cloud Practitioner Essentials Module 1 + freeCodeCamp SAA intro (first ~35 min), took notes.
 - Build/Break: nslookup, DevTools headers, 404 path, 307 HSTS -> 308 apex->www redirect chain. x-vercel-id iad1 = AWS us-east-1 (Vercel runs on AWS).
@@ -26,6 +30,13 @@ Next session: Finish Day 2 at home: (1) subnets in tiny steps (split a /16 into 
 (none yet)
 
 ## Review list (things to re-quiz)
+- MISSED: CIDR size is backwards from intuition. Slash counts LOCKS. /8 huge, /16 big, /24 small, /32 = 1 address. Hook: 'Big number, small house.'
+- Still foggy twice: 'site can't be reached, no status code' -> check DNS first (nslookup). Hook: 'If nobody picked up, check you have the right number.'
+- Private ranges: '10, 172, 192 stay home'. 10.x is NOT 'AWS' - it's private for everyone, AWS just uses it a lot.
+- Subnet = network under a network (building = network, floors = subnets). Public subnet = internet needs to reach it (web server); private = no (database, backups). Wrong placement: website private = broken (loud); database public = exposed (quiet).
+- NAT: 'Out yes, in no, replies only.' AWS NAT Gateway bills hourly.
+- UDP glitch = dropped piece, not delay. TCP is the one that waits/delays to resend.
+- Reread answers for typos that flip meaning (wrote 'can' meant 'can't').
 - UDP is less RELIABLE, not less SAFE. NAT = router translates private->public ('hide behind'), not 'spoof'. Website sees home public IP, never 192.168.x (missed once).
 - MISSED: A vs CNAME when the host's IP can change -> CNAME (points to a name; the host keeps its IP current). A record holds only an IP, never a name.
 - MISSED: request order = find it (DNS) -> connect (port 443 + encryption) -> ask (GET /) -> get (200). Pizza analogy.
