@@ -10,6 +10,7 @@ Next session: Finish Day 2 at home: (1) subnets in tiny steps (split a /16 into 
 - HIS GOAL: by ~Day 60, explain every topic out loud easily enough to pass a junior interview. So EVERY session: start with a refresher recap + re-quiz 2-3 items, mixing recent ones with older ones (spaced repetition), not just yesterday's. Keep revisiting until they're effortless.
 - Big tables + code blocks + several new terms in one message = shuts down (happened on CIDR). For math topics: ONE small idea per message, short, check, then next. Keep messages short in general.
 - CIDR clicked once taught as: dots split 4 numbers -> same first 3 = same house -> /24 shorthand -> 'slash / 8 = numbers locked'. Each number = 8 bits (on/off switches) explained only after he asked.
+- ALWAYS end each new concept with a short "Note rule" box he can copy straight into his notes (one-line rule + memory hook). He asked for this for everything going forward.
 - He takes handwritten notes; resend a section in full when he asks so he can copy it.
 - Plain-English story first, labels/jargon after. Too many terms at once = frustration.
 - Show a worked example before asking open questions; fill-in-the-blank works better than "explain everything".
