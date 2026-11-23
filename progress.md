@@ -1,7 +1,7 @@
 # AWS SAA progress
 
 Exam target: Fri 2027-01-15 (not booked yet; book on Day 41, Dec 28)
-Next session: Day 3, Linux command line part 1 (needs Ubuntu via WSL on his Windows PC). Warm-up first: CIDR size ('big number, small house'), DNS-first rule, public vs private subnet.
+Next session: Day 3, Linux command line part 1 (needs Ubuntu via WSL on his Windows PC). Start with the brain dump, then the 5 due B1 cards.
 
 ## Completed days
 - Day 2 (2026-11-17): 9/10 quiz, 3/3 interview Qs (good, polished). Missed: which CIDR is biggest (picked /32).
@@ -29,24 +29,31 @@ Next session: Day 3, Linux command line part 1 (needs Ubuntu via WSL on his Wind
 ## Practice exam scores
 (none yet)
 
-## Review list (things to re-quiz)
-- MISSED: CIDR size is backwards from intuition. Slash counts LOCKS. /8 huge, /16 big, /24 small, /32 = 1 address. Hook: 'Big number, small house.'
-- Still foggy twice: 'site can't be reached, no status code' -> check DNS first (nslookup). Hook: 'If nobody picked up, check you have the right number.'
-- Private ranges: '10, 172, 192 stay home'. 10.x is NOT 'AWS' - it's private for everyone, AWS just uses it a lot.
-- Subnet = network under a network (building = network, floors = subnets). Public subnet = internet needs to reach it (web server); private = no (database, backups). Wrong placement: website private = broken (loud); database public = exposed (quiet).
-- NAT: 'Out yes, in no, replies only.' AWS NAT Gateway bills hourly.
-- UDP glitch = dropped piece, not delay. TCP is the one that waits/delays to resend.
-- Reread answers for typos that flip meaning (wrote 'can' meant 'can't').
-- UDP is less RELIABLE, not less SAFE. NAT = router translates private->public ('hide behind'), not 'spoof'. Website sees home public IP, never 192.168.x (missed once).
-- MISSED: A vs CNAME when the host's IP can change -> CNAME (points to a name; the host keeps its IP current). A record holds only an IP, never a name.
-- MISSED: request order = find it (DNS) -> connect (port 443 + encryption) -> ask (GET /) -> get (200). Pizza analogy.
-- Ports: 80 HTTP, 443 HTTPS, 22 SSH. Status families: no code = never reached server (check DNS), 4xx = your request (401 no ID, 403 not allowed, 404 not found), 5xx = server broke. Say 500, not 505.
-- Interview polish: the cloud is renting compute/storage/databases, not just site hosting; give 2+ reasons. HTTPS = encryption AND proves site identity (certificate).
-- Read answer letters carefully (said 'C' but meant CNAME = B).
-- Grey cloud (DNS only) vs orange cloud (proxied): his site resolves straight to Vercel (76.76.21.21), not Cloudflare. Ties to Route 53 vs CloudFront.
-- Don't assume who owns an IP; look it up (ipinfo.io).
-- A record (name -> IP, used on apex zackhaynie.com) vs CNAME (name -> name, www -> cname.vercel-dns.com). Route 53 "Alias" exists because CNAME isn't allowed at the apex.
-- DNS only sees the domain name, never the path. 404 = DNS worked, server reached, page not found. DNS failure = no status code at all.
-- 307 Internal Redirect = browser upgraded http->https itself because of HSTS. 308 = server (Vercel) said "moved permanently" (apex -> www).
-- Caching: "from memory cache" = browser never contacted the server; x-vercel-cache HIT/MISS = server-side cache.
-- nslookup is a tool for a human to ask DNS manually; the browser does the same lookup automatically.
+## Review list (cards: see "Card boxes" in CLAUDE.md)
+- [B1 due 2026-11-23] Which CIDR is biggest, /8, /16, /24 or /32? :: Slash counts the LOCKED numbers. /8 huge, /32 = 1 address. "Big number, small house."
+- [B1 due 2026-11-23] Site "can't be reached", no status code. What do you check first? :: DNS first (nslookup). "If nobody picked up, check you have the right number."
+- [B1 due 2026-11-23] Host's IP can change. A record or CNAME? :: CNAME (name -> name, host keeps its IP current). A record holds only an IP, never a name.
+- [B1 due 2026-11-23] Put the request steps in order. :: Find it (DNS) -> connect (443 + encryption) -> ask (GET /) -> get (200). Pizza analogy.
+- [B1 due 2026-11-23] Does a website see your 192.168.x address? :: No, it sees your home PUBLIC IP. NAT hides you behind the router.
+- [B2 due 2026-11-25] Which IP ranges are private? Is 10.x "AWS's"? :: "10, 172, 192 stay home." Private for everyone; AWS just uses 10.x a lot.
+- [B2 due 2026-11-25] Public vs private subnet: what goes where, and what happens if you flip them? :: Web server public, database private. Website private = broken (loud). Database public = exposed (quiet).
+- [B2 due 2026-11-25] What does NAT allow? :: "Out yes, in no, replies only." Router translates private -> public. AWS NAT Gateway bills hourly.
+- [B2 due 2026-11-25] UDP glitch vs TCP glitch. Is UDP less safe? :: UDP drops the piece; TCP waits and resends (delay). UDP is less RELIABLE, not less safe.
+- [B2 due 2026-11-26] Ports 80, 443, 22? :: HTTP, HTTPS, SSH.
+- [B2 due 2026-11-26] No code vs 4xx vs 5xx. What's 401 vs 403 vs 404? :: No code = never reached server (check DNS). 4xx = your request (401 no ID, 403 not allowed, 404 not found). 5xx = server broke. Say 500, not 505.
+- [B2 due 2026-11-26] Interview: what is "the cloud"? What does HTTPS do? :: Renting compute, storage, databases (give 2+ reasons). HTTPS = encryption AND proves the site's identity (certificate).
+- [B2 due 2026-11-26] Why does Route 53 have "Alias" records? :: CNAME isn't allowed at the apex (zackhaynie.com uses an A record, www uses CNAME).
+- [B2 due 2026-11-27] Grey cloud vs orange cloud in Cloudflare? :: Grey = DNS only (goes straight to Vercel). Orange = proxied through Cloudflare. Ties to Route 53 vs CloudFront.
+- [B2 due 2026-11-27] Does DNS see the path (/about)? What does a 404 tell you? :: DNS only sees the domain. 404 = DNS worked, server reached, page missing.
+- [B2 due 2026-11-27] 307 vs 308 redirect? :: 307 = browser upgraded to https itself (HSTS). 308 = server said "moved permanently" (apex -> www).
+- [B2 due 2026-11-27] "from memory cache" vs x-vercel-cache HIT? :: Memory cache = browser never contacted the server. HIT/MISS = server side cache.
+- [B3 due 2026-11-30] Subnet in one line? :: Network under a network (building = network, floors = subnets).
+- [B3 due 2026-11-30] How do you find out who owns an IP? :: Look it up (ipinfo.io), don't assume.
+- [B3 due 2026-11-30] nslookup vs the browser? :: nslookup = a human asking DNS manually; the browser does the same lookup automatically.
+
+## Habits to watch (not cards)
+- Reread answers for typos that flip meaning (wrote "can" meant "can't").
+- Read answer letters carefully (said "C" but meant CNAME = B).
+
+## Solid
+(none yet)
