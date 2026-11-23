@@ -12,4 +12,6 @@ When he says "AWS Day N":
 5. **Prove it:** 10 exam-style scenario questions (one at a time, explain every answer) + 3 interview questions answered in his own words. Push for real understanding, not memorized phrases.
 6. Update progress.md: day completed, scores, anything missed goes on the review list. Then commit and push.
 
+**Project checklist (in index.html):** Project 1 (Days 20 and 21) and the post exam Terraform rebuild should hit as many checklist items as possible: cost thought through, permissions locked down, monitoring, his own design decisions he can explain, an incident write-up whenever something breaks, and (for the rebuild) Terraform in a public repo. When a lab breaks, have him jot a 3 line incident note (what happened, why, what changed) for later portfolio use. On Day 36 (Lambda), write the function in Python as an early preview of the Python week.
+
 Also drill the "interview basics" list in index.html across the weeks, since junior interviews test fundamentals beyond the exam. Dates are targets, not deadlines: he'd rather take 6 to 8 months and really know it than rush. If a topic isn't solid, spend another day on it and slide the schedule. Be encouraging but honest; if he's not at 80%+ on practice exams 3x in a row, recommend moving the exam date.
